@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.rentcar.controller.VehicleController" spacing="12">
+    <Label text="Flota de vehículos" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+    <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 16; -fx-background-radius: 8;">
+        <Label text="Registrar un vehículo" style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+        <GridPane hgap="12" vgap="10">
+            <Label text="Marca" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="vehicleBrandField" promptText="Ej. Toyota" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="Modelo" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <TextField fx:id="vehicleModelField" promptText="Ej. Corolla" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+            <Label text="Categoría" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <ComboBox fx:id="vehicleCategoryCombo" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="Año" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <TextField fx:id="vehicleYearField" promptText="Ej. 2025" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+            <Label text="Tarifa diaria (COP)" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="vehicleRateField" promptText="Ej. 180000" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <HBox spacing="8" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                <Button text="Registrar vehículo" onAction="#registerVehicle" style="-fx-background-color: #2457a7; -fx-text-fill: white;"/>
+                <Button text="Limpiar" onAction="#clearVehicleForm"/>
+            </HBox>
+        </GridPane>
+        <Label text="Se validan los campos obligatorios, el año y la tarifa diaria." style="-fx-text-fill: #64748b;"/>
+    </VBox>
+    <Label text="Vehículos registrados" style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+    <TableView fx:id="vehicleTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="vehicleIdColumn" text="ID" prefWidth="90"/>
+            <TableColumn fx:id="vehicleBrandColumn" text="Marca" prefWidth="100"/>
+            <TableColumn fx:id="vehicleModelColumn" text="Modelo" prefWidth="110"/>
+            <TableColumn fx:id="vehicleCategoryColumn" text="Categoría" prefWidth="110"/>
+            <TableColumn fx:id="vehicleYearColumn" text="Año" prefWidth="70"/>
+            <TableColumn fx:id="vehicleRateColumn" text="Tarifa diaria" prefWidth="110"/>
+            <TableColumn fx:id="vehicleStatusColumn" text="Estado" prefWidth="90"/>
+        </columns>
+    </TableView>
+</VBox>

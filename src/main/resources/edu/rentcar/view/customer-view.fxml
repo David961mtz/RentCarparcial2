@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.rentcar.controller.CustomerController" spacing="12">
+    <Label text="Clientes" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+    <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 16; -fx-background-radius: 8;">
+        <Label text="Registrar o editar cliente" style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+        <GridPane hgap="12" vgap="10">
+            <Label text="Nombre" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="customerNameField" promptText="Ej. Ana Pérez" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="Correo" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <TextField fx:id="customerEmailField" promptText="Ej. ana@correo.com" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+            <CheckBox fx:id="customerAuthorizedCheck" text="Autorizado para alquilar" selected="true"
+                      GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <HBox spacing="8" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                <Button text="Registrar" onAction="#registerCustomer" style="-fx-background-color: #2457a7; -fx-text-fill: white;"/>
+                <Button text="Guardar cambios" onAction="#updateCustomer"/>
+                <Button text="Eliminar" onAction="#deleteCustomer"/>
+                <Button text="Limpiar" onAction="#clearCustomerForm"/>
+            </HBox>
+        </GridPane>
+        <Label text="Seleccione un cliente de la tabla para editarlo o eliminarlo. Limpiar vacía el formulario."
+               wrapText="true" style="-fx-text-fill: #64748b;"/>
+    </VBox>
+    <Label text="Clientes registrados" style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+    <TableView fx:id="customerTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="customerIdColumn" text="ID" prefWidth="110"/>
+            <TableColumn fx:id="customerNameColumn" text="Nombre" prefWidth="190"/>
+            <TableColumn fx:id="customerEmailColumn" text="Correo" prefWidth="240"/>
+            <TableColumn fx:id="customerAuthorizedColumn" text="Autorizado" prefWidth="100"/>
+        </columns>
+    </TableView>
+</VBox>

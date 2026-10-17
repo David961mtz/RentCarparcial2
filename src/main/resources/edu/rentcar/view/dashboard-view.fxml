@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.rentcar.controller.DashboardController" spacing="18">
+    <Label text="Bienvenido a RentCar" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    <Label text="Cree una reserva en la pantalla Reservas. Los datos se guardan en memoria mientras la aplicación esté abierta." wrapText="true"/>
+    <HBox spacing="16">
+        <VBox spacing="8" prefWidth="220" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 8;">
+            <Label text="Clientes"/>
+            <Label fx:id="customerCountLabel" text="0" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #172b4d;"/>
+        </VBox>
+        <VBox spacing="8" prefWidth="220" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 8;">
+            <Label text="Vehículos"/>
+            <Label fx:id="vehicleCountLabel" text="0" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #172b4d;"/>
+        </VBox>
+        <VBox spacing="8" prefWidth="220" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 8;">
+            <Label text="Reservas"/>
+            <Label fx:id="reservationCountLabel" text="0" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #172b4d;"/>
+        </VBox>
+    </HBox>
+    <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 18; -fx-background-radius: 8;">
+        <Label text="Cómo probar un alquiler" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        <Label text="1. La API de pagos se intenta iniciar sola. Si falla, ejecute: java -jar external/payment-api.jar" wrapText="true"/>
+        <Label text="2. En Reservas elija un cliente autorizado (Sofia Martinez), un vehículo, Económica y pago Aprobado." wrapText="true"/>
+        <Label text="3. Confirmar. Un cliente no autorizado, un pago rechazado o las mismas fechas del mismo vehículo quedarán como Fallida." wrapText="true"/>
+    </VBox>
+</VBox>
