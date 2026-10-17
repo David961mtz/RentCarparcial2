@@ -25,4 +25,10 @@ public class ReservationRepository {
     public int count() {
         return reservations.size();
     }
+
+    public boolean hasReservationsForCustomer(String customerId) {
+        return reservations.stream()
+                .anyMatch(reservation ->
+                        reservation.getCustomerId().equals(customerId));
+    }
 }
