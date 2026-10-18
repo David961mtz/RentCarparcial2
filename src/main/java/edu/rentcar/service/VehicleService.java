@@ -1,3 +1,4 @@
+
 package edu.rentcar.service;
 
 import edu.rentcar.model.Vehicle;
@@ -7,6 +8,7 @@ import java.time.Year;
 import java.util.List;
 
 public class VehicleService {
+
     private final VehicleRepository vehicleRepository;
 
     public VehicleService(VehicleRepository vehicleRepository) {
@@ -21,23 +23,32 @@ public class VehicleService {
         return vehicleRepository.count();
     }
 
-    public Vehicle registerVehicle(String brand, String model, String category,
-                                   String modelYearText, String dailyRateText) {
-        String cleanBrand = requireText(brand, "La marca es obligatoria.");
-        String cleanModel = requireText(model, "El modelo es obligatorio.");
-        String cleanCategory = requireText(category, "La categoría es obligatoria.");
+    public Vehicle registerVehicle(
+            String brand,
+            String model,
+            String category,
+            String modelYearText,
+            String dailyRateText
+    ) {
+        String cleanBrand = requireText(brand, "Brand is required.");
+        String cleanModel = requireText(model, "Model is required.");
+        String cleanCategory = requireText(category, "Category is required.");
 
         int modelYear;
         try {
             modelYear = Integer.parseInt(modelYearText.trim());
         } catch (RuntimeException exception) {
-            throw new IllegalArgumentException("El año del modelo debe ser un número válido.");
+            throw new IllegalArgumentException(
+                    "Model year must be a valid number."
+            );
         }
 
         int currentYear = Year.now().getValue();
+
         if (modelYear < 1990 || modelYear > currentYear + 1) {
             throw new IllegalArgumentException(
-                    "El año del modelo debe estar entre 1990 y " + (currentYear + 1) + "."
+                    "Model year must be between 1990 and "
+                            + (currentYear + 1) + "."
             );
         }
 
@@ -45,15 +56,23 @@ public class VehicleService {
         try {
             dailyRate = Double.parseDouble(dailyRateText.trim());
         } catch (RuntimeException exception) {
-            throw new IllegalArgumentException("La tarifa diaria debe ser un número válido.");
+            throw new IllegalArgumentException(
+                    "Daily rate must be a valid number."
+            );
         }
 
         if (!Double.isFinite(dailyRate) || dailyRate <= 0) {
-            throw new IllegalArgumentException("La tarifa diaria debe ser mayor que cero.");
+            throw new IllegalArgumentException(
+                    "Daily rate must be greater than zero."
+            );
         }
 
         return vehicleRepository.save(
-                cleanBrand, cleanModel, cleanCategory, modelYear, dailyRate
+                cleanBrand,
+                cleanModel,
+                cleanCategory,
+                modelYear,
+                dailyRate
         );
     }
 
@@ -61,6 +80,8 @@ public class VehicleService {
         if (value == null || value.trim().isEmpty()) {
             throw new IllegalArgumentException(fieldName);
         }
+
         return value.trim();
     }
 }
+

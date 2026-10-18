@@ -1,3 +1,4 @@
+
 package edu.rentcar.builder;
 
 import edu.rentcar.catalog.CatalogItem;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RentalRequestBuilder {
+
     private Customer customer;
     private Vehicle vehicle;
     private LocalDate startDate;
@@ -51,23 +53,38 @@ public class RentalRequestBuilder {
 
     public RentalRequest build() {
         if (customer == null) {
-            throw new IllegalArgumentException("El cliente es obligatorio.");
+            throw new IllegalArgumentException("Customer is required.");
         }
+
         if (vehicle == null) {
-            throw new IllegalArgumentException("El vehículo es obligatorio.");
+            throw new IllegalArgumentException("Vehicle is required.");
         }
+
         if (startDate == null) {
-            throw new IllegalArgumentException("La fecha de inicio es obligatoria.");
+            throw new IllegalArgumentException("Start date is required.");
         }
+
         if (endDate == null) {
-            throw new IllegalArgumentException("La fecha de fin es obligatoria.");
+            throw new IllegalArgumentException("End date is required.");
         }
+
         if (!endDate.isAfter(startDate)) {
-            throw new IllegalArgumentException("La fecha de fin debe ser posterior a la de inicio.");
+            throw new IllegalArgumentException(
+                    "End date must be after start date."
+            );
         }
+
         if (modality == null || modality.isBlank()) {
-            throw new IllegalArgumentException("La modalidad es obligatoria.");
+            throw new IllegalArgumentException("Modality is required.");
         }
-        return new RentalRequest(customer, vehicle, startDate, endDate, modality.trim(), extras);
+
+        return new RentalRequest(
+                customer,
+                vehicle,
+                startDate,
+                endDate,
+                modality.trim(),
+                extras
+        );
     }
 }
